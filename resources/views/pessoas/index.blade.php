@@ -23,14 +23,13 @@
                 @endforeach
             </div>   
 
-            <div class="row">
-                <h1 class="col-sm-9">Critério: {{$criterio}}</h1>  
+            <div class="col-sm-12">
                 <form action="{{ url('/pessoas/busca') }}" method="post">
                     <div class="col-sm-3 input-group">
                     {{csrf_field()}}
-                        <input type="text" class="form-control" name ="criterio" placeholder="Buscar por...">
+                        <input type="text" class="form-control" name ="criterio" placeholder="Buscar por..." style="margin-bottom:20px; right:-740px;">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">OK</button>
+                            <button class="btn btn-default" type="submit" style="margin-bottom:20px; right:-740px;">OK</button>
                         </span>
                     </div>
                 </form>

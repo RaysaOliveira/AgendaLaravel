@@ -22,8 +22,37 @@
                         </span>
                      @endif  
                 </div>
+
+                <div class="form-group col-md-3 {{$errors->has('ddd') ? 'has-error' : '' }}">
+                    <label class="control-label">DDD</label>
+                    @foreach($pessoa->telefone as $tel)
+                        <input type="hidden" name="id_tel" value="{{$tel->id}}">
+                        <input type="hidden" name="pessoa_id" value="{{$tel->pessoa_id}}">
+                        <input type="text"value="{{$tel->ddd}}" name="ddd" class="form-control" placeholder="DDD"> 
+                        @if($errors->has('ddd'))   
+                            <span class="help-block">
+                                {{$errors->first('ddd')}}
+                            </span>
+                        @endif  
+                    @endforeach   
+                </div>
+
+                <div class="form-group col-md-9 {{$errors->has('fone') ? 'has-error' : '' }}">
+                    <label class="control-label">Telefone</label>
+                    @foreach($pessoa->telefone as $tel)
+                        <input type="text" value="{{ $tel->fone}}" name="fone" class="form-control" placeholder="Telefone"> 
+                        @if($errors->has('fone'))   
+                            <span class="help-block">
+                                {{$errors->first('fone')}}
+                            </span>
+                        @endif   
+                    @endforeach     
+                </div>
               
-                <div class="col-md-12">
+                <div class="col-md-10" action="{{url('/pessoas/index')}}">
+                    <button style="margin-top: 5px; float:right" type="submit" class=" btn btn-primary">Cancelar</button>
+                </div>
+                <div class="col-md-2">
                     <button style="margin-top: 5px; float:right" type="submit" class=" btn btn-primary">Salvar</button>
                 </div>
             </form>

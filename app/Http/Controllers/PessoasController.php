@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pessoa;
 use App\Telefone;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PessoasController extends Controller
 {
@@ -46,11 +47,11 @@ class PessoasController extends Controller
 
         $pessoa = Pessoa::create($request->all());
         if($request->ddd && $request->fone){
-            $telefone = new Telefone();
-            $telefone->ddd = $request->ddd;
-            $telefone->fone = $request->fone;
-            $telefone->pessoa_id = $pessoa->id;
-            $this->telefones_controller->store($telefone);
+            $this->telefone = new Telefone();
+            $this->telefone->ddd = $request->ddd;
+            $this->telefone->fone = $request->fone;
+            $this->telefone->pessoa_id = $pessoa->id;
+            $this->telefones_controller->store($this->telefone);
         }
         
         return redirect('/pessoas')->with("message", "Contato criado com sucesso!");
@@ -63,12 +64,27 @@ class PessoasController extends Controller
         ]);
     }
 
+    public function listAll()
+    {
+        $pessoasOrdenadas = DB::table('pessoas')->orderBy('nome')->get();
+       
+        //   $pessoas = Pessoa::all();
+        return view ('pessoas.listAll', [
+            'pessoas' => $pessoasOrdenadas,
+        ]);
+    }
+
     protected function getPessoa($id)
     {
         return $this->pessoa->find($id);
     }
 
-    public function update(Request $request)
+    protected function getTelefone($id)
+    {
+       return Telefone::find($id);
+    }
+
+    public function update( Request $request)
     {
         $validacao = $this->validacao($request->all());
         if($validacao->fails()) {
@@ -76,10 +92,13 @@ class PessoasController extends Controller
                 ->withErrors($validacao->errors())
                 ->withInput($request->all());
         }
-    
+        
         $pessoa = $this->getPessoa($request->id);
-        $pessoa->update($request->all());
+        $telefonePessoa = $this->getTelefone($request->id_tel);
       
+        $pessoa->update($request->except(['_token']));
+        $telefonePessoa->update($request->except(['_token']));
+        
         return redirect('/pessoas/');
     }
 

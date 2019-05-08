@@ -24,6 +24,7 @@ Route::group(["prefix" => "pessoas"], function(){
         return redirect('/pessoas/A');
     });
     Route::get('/novo', "PessoasController@novoView");
+    Route::get('/listar', "PessoasController@listAll");
     Route::get('/{id}/editar', "PessoasController@editView");
     Route::get('/{id}/excluir', "PessoasController@excluirView");
     Route::get('/{id}/destroy', "PessoasController@destroy");

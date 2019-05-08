@@ -8,7 +8,7 @@
 </head>
     <body>
         <div>
-            <a class="navbar-brand" href="#">Agenda</a>
+            <a class="navbar-brand" href="{{url('/pessoas/index')}}">Agenda</a>
         </div>
         <div class="container-fluid" >
             <ul class="nav navbar-nav">
@@ -16,14 +16,15 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     Contatos <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('/pessoas/novo')}}">Novo</a></li>                  
+                        <li><a href="{{url('/pessoas/novo')}}">Novo</a></li> 
+                        <li><a href="{{url('/pessoas/listar')}}">Listar Contatos</a></li>                  
                     </ul>
                 </li>
             </ul>
         </div>
+        
         <div class="container">
-        @yield('content')
+            @yield('content')
         </div>
-
     </body>
 </html>

@@ -27,4 +27,8 @@ class Pessoa extends Model
     {
         return static::where('nome', 'LIKE', '%' . $criterio . '%')->get();
     }
+    public static function ordenarPessoas()
+    {
+        return static::select('SELECT * FROM pessoa ORDER BY nome');
+    }
 }
