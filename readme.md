@@ -1,7 +1,7 @@
 
 ## Agenda em PHP utilizando o framework Laravel
 
-- Cria contato (nome, telefone) 
+- Cria/Edita contato (nome, telefone) 
 - Lista todos os contatos
 - Busca por nome
 
