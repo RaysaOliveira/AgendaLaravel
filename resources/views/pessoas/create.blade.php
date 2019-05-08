@@ -42,7 +42,7 @@
                      @endif    
                 </div>
                 <div class="col-md-9">
-                    <button style="margin-top: 5px; float:right" type="submit" class=" btn btn-primary">Salvar</button>
+                    <button style="margin-top: 5px; margin-left:405px;" type="submit" class=" btn btn-primary">Salvar</button>
                 </div>
             </form>
         </div>
